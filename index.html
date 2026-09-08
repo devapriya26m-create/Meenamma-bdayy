@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Meenachii 💌</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --cream: #fffaf0;
+  --sage: #8da58b;
+  --dark-green: #365244;
+  --pink: #efb7bd;
+  --soft-pink: #f9dfe1;
+  --yellow: #f7df9b;
+  --ink: #35443b;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(239,183,189,.32), transparent 24%),
+    radial-gradient(circle at 85% 80%, rgba(141,165,139,.28), transparent 28%),
+    var(--cream);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+.app {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.scene {
+  display: none;
+  min-height: 100vh;
+  padding: 28px 18px;
+  place-items: center;
+  animation: fadeIn .65s ease both;
+}
+
+.scene.active {
+  display: grid;
+}
+
+.card, .birthday-card, .letter, .final-card {
+  width: min(92vw, 520px);
+  padding: 38px 28px;
+  text-align: center;
+  border: 2px solid rgba(54,82,68,.12);
+  border-radius: 32px;
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 20px 60px rgba(54,82,68,.12);
+  backdrop-filter: blur(8px);
+}
+
+.tiny-note {
+  font-family: "Patrick Hand", cursive;
+  font-size: 22px;
+  margin-bottom: 12px;
+  transform: rotate(-2deg);
+}
+
+.sparkles, .stars {
+  letter-spacing: 9px;
+  color: var(--sage);
+  font-size: 20px;
+}
+
+h1, h2 {
+  font-family: "Patrick Hand", cursive;
+}
+
+h1 {
+  font-size: clamp(48px, 13vw, 72px);
+  line-height: .9;
+  margin: 15px 0;
+}
+
+h2 {
+  font-size: 31px;
+  margin: 28px 0 22px;
+}
+
+p {
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.buttons {
+  position: relative;
+  min-height: 95px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 15px 28px;
+  font: 700 16px "DM Sans", sans-serif;
+  cursor: pointer;
+  transition: transform .35s ease, opacity .35s ease, box-shadow .35s ease;
+  touch-action: manipulation;
+}
+
+#yesBtn, .yes-choice, .primary-btn {
+  background: var(--sage);
+  color: white;
+  box-shadow: 0 10px 25px rgba(141,165,139,.35);
+}
+
+#noBtn, .choice:not(.yes-choice) {
+  background: var(--soft-pink);
+  color: #754c51;
+}
+
+button:active {
+  transform: scale(.95);
+}
+
+.reaction {
+  min-height: 30px;
+  margin: 10px 0 0;
+  font-family: "Patrick Hand", cursive;
+  font-size: 23px;
+}
+
+.emoji-big {
+  font-size: 62px;
+}
+
+.warning {
+  font-family: "Patrick Hand", cursive;
+  font-size: 28px;
+}
+
+.danger-btn {
+  background: #f1c6cb;
+  color: #713f47;
+  font-size: 18px;
+  padding: 18px 32px;
+}
+
+.birthday-card {
+  background: linear-gradient(160deg, #fffdf6, #f4eee0);
+}
+
+.balloons {
+  font-size: 42px;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+.birthday-card h1 {
+  color: var(--dark-green);
+  font-size: clamp(42px, 12vw, 65px);
+  margin-bottom: 0;
+}
+
+.birthday-card h2 {
+  color: #b76570;
+  font-size: 42px;
+  margin-top: 8px;
+}
+
+.cake {
+  font-size: 90px;
+  margin: 10px;
+}
+
+.photo-placeholder {
+  min-height: 260px;
+  border: 3px dashed rgba(54,82,68,.25);
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  background: #f7f1df;
+  margin: 24px 0;
+  font-family: "Patrick Hand", cursive;
+  font-size: 28px;
+}
+
+.photo-placeholder small {
+  display: block;
+  max-width: 250px;
+  font: 15px "DM Sans", sans-serif;
+  margin-top: 10px;
+  opacity: .65;
+}
+
+.letter {
+  background: #fffdf7;
+}
+
+.envelope {
+  font-size: 65px;
+}
+
+.letter-box {
+  text-align: left;
+  background: #fbf0d9;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 22px 0;
+  border: 1px solid rgba(54,82,68,.12);
+}
+
+.final-card {
+  background: linear-gradient(145deg, #fff9ef, #f3e8d8);
+}
+
+.final-card h1 {
+  font-size: clamp(42px, 11vw, 65px);
+}
+
+.final-card h2 {
+  color: #b76570;
+  font-size: 44px;
+}
+
+.final-emoji {
+  font-size: 62px;
+  animation: bounce 1s ease infinite alternate;
+}
+
+.hidden {
+  display: none;
+}
+
+.doodle {
+  position: fixed;
+  pointer-events: none;
+  opacity: .4;
+  font-size: 35px;
+  z-index: 0;
+}
+
+.doodle-1 { top: 10%; left: 7%; transform: rotate(-15deg); }
+.doodle-2 { top: 18%; right: 7%; transform: rotate(12deg); }
+.doodle-3 { bottom: 12%; left: 8%; }
+.doodle-4 { bottom: 18%; right: 8%; }
+
+.confetti-piece {
+  position: fixed;
+  top: -20px;
+  font-size: 24px;
+  z-index: 20;
+  animation: fall 2.8s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes float {
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes bounce {
+  to { transform: translateY(-8px) scale(1.04); }
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .card, .birthday-card, .letter, .final-card {
+    padding: 30px 20px;
+    border-radius: 27px;
+  }
+
+  h1 {
+    font-size: 55px;
+  }
+
+  h2 {
+    font-size: 27px;
+  }
+}
+
+</style>
+</head>
+<body>
+  <main class="app">
+    <div class="doodle doodle-1">✦</div>
+    <div class="doodle doodle-2">♡</div>
+    <div class="doodle doodle-3">✿</div>
+    <div class="doodle doodle-4">☁</div>
+
+    <section id="scene1" class="scene active">
+      <div class="tiny-note">psst... Meenachii 👀</div>
+      <div class="card">
+        <div class="sparkles">✦ ✧ ✦</div>
+        <h1>Hey you.</h1>
+        <p>I made something for you.<br>And yes, you have to cooperate. 😌</p>
+        <h2>Are you ready?</h2>
+
+        <div class="buttons">
+          <button id="noBtn">NO</button>
+          <button id="yesBtn">YES</button>
+        </div>
+
+        <p id="reaction" class="reaction"></p>
+      </div>
+    </section>
+
+    <section id="scene2" class="scene">
+      <div class="card">
+        <div class="emoji-big">🎁</div>
+        <h1>Okayyyy...</h1>
+        <p>You actually said yes.</p>
+        <p>But don't get too excited yet.</p>
+        <h2>Do you think there's a surprise waiting for you?</h2>
+        <div class="buttons">
+          <button class="choice" data-next="scene3">NO</button>
+          <button class="choice yes-choice" data-next="scene3">YES</button>
+        </div>
+        <p id="scene2Reaction" class="reaction"></p>
+      </div>
+    </section>
+
+    <section id="scene3" class="scene">
+      <div class="card">
+        <div class="emoji-big">👀</div>
+        <h1>One rule.</h1>
+        <p class="warning">Do NOT press the button below.</p>
+        <button id="doNotPress" class="danger-btn">DO NOT PRESS</button>
+        <p id="scene3Reaction" class="reaction"></p>
+      </div>
+    </section>
+
+    <section id="scene4" class="scene">
+      <div class="birthday-card">
+        <div class="confetti" id="confetti"></div>
+        <div class="balloons">🎈 🎈 🎈</div>
+        <p class="tiny-note">surprise unlocked ✨</p>
+        <h1>HAPPY BIRTHDAY</h1>
+        <h2>MEENACHII! 🥳</h2>
+        <div class="cake">🎂</div>
+        <p>Okay, now make a wish. 💫</p>
+        <button id="cakeBtn" class="primary-btn">Blow the candles 🕯️</button>
+        <p id="cakeReaction" class="reaction"></p>
+      </div>
+    </section>
+
+    <section id="scene5" class="scene">
+      <div class="card">
+        <div class="emoji-big">📸</div>
+        <h1>Exhibit A</h1>
+        <p>Evidence that we have, in fact, made some questionable decisions.</p>
+        <div class="photo-placeholder">
+          <span>YOUR PHOTO HERE</span>
+          <small>Replace this with your favourite photo together 💚</small>
+        </div>
+        <button class="primary-btn next-btn" data-next="scene6">Okay, continue →</button>
+      </div>
+    </section>
+
+    <section id="scene6" class="scene">
+      <div class="letter">
+        <div class="envelope">💌</div>
+        <h1>Okay fine...</h1>
+        <p>I'll be nice for a minute.</p>
+        <div class="letter-box">
+          <p>Dear Meenamma,</p>
+          <p>
+            This is where your actual birthday message goes.
+            Tell her whatever you want here — the funny stuff, the memories,
+            the things you never say out loud... all of it.
+          </p>
+          <p>— your favourite nuisance 🫶</p>
+        </div>
+        <button class="primary-btn next-btn" data-next="scene7">There's more? 👀</button>
+      </div>
+    </section>
+
+    <section id="scene7" class="scene">
+      <div class="final-card">
+        <div class="stars">✦ ✧ ✦ ✧ ✦</div>
+        <p>Wait...</p>
+        <h1>You thought that was it?</h1>
+        <div class="buttons final-buttons">
+          <button id="finalYes">YES</button>
+          <button id="finalNo">NO</button>
+        </div>
+        <div id="finalReveal" class="hidden">
+          <div class="final-emoji">🎊💚🎂</div>
+          <h2>HAPPY BIRTHDAY<br>MEENAMMA ❤️</h2>
+          <p>Okay NOW you're allowed to leave. 😂</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+const scenes = document.querySelectorAll(".scene");
+
+function goTo(id) {
+  scenes.forEach(scene => scene.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Scene 1: the "NO gets smaller / YES gets bigger" mechanic.
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const reaction = document.getElementById("reaction");
+
+let noClicks = 0;
+
+noBtn.addEventListener("click", () => {
+  noClicks++;
+
+  const noScale = Math.max(0.18, 1 - noClicks * 0.18);
+  const yesScale = Math.min(2.2, 1 + noClicks * 0.22);
+
+  noBtn.style.transform = `scale(${noScale})`;
+  yesBtn.style.transform = `scale(${yesScale})`;
+
+  const reactions = [
+    "Interesting answer... 🤨",
+    "Hmm. Try again. 😭",
+    "Meenachii. Be serious.",
+    "You're running out of options 😂",
+    "Okay fine. I'll make the decision for you."
+  ];
+
+  reaction.textContent = reactions[Math.min(noClicks - 1, reactions.length - 1)];
+
+  if (noClicks >= 5) {
+    noBtn.style.opacity = "0";
+    noBtn.style.pointerEvents = "none";
+    reaction.textContent = "See? YES was always the correct answer. 😌";
+  }
+});
+
+yesBtn.addEventListener("click", () => goTo("scene2"));
+
+// Scene 2: simple choice, with a little teasing.
+document.querySelectorAll(".choice").forEach(button => {
+  button.addEventListener("click", () => {
+    const text = button.textContent;
+    document.getElementById("scene2Reaction").textContent =
+      text === "NO" ? "Liar. 😭" : "Too confident. 🤨";
+    setTimeout(() => goTo("scene3"), 850);
+  });
+});
+
+// Scene 3: obviously press the forbidden button.
+document.getElementById("doNotPress").addEventListener("click", () => {
+  document.getElementById("scene3Reaction").textContent = "I KNEW IT. 😂";
+  setTimeout(() => {
+    goTo("scene4");
+    launchConfetti();
+  }, 700);
+});
+
+// Scene 4: candle interaction.
+document.getElementById("cakeBtn").addEventListener("click", () => {
+  document.querySelector(".cake").textContent = "🍰";
+  document.getElementById("cakeBtn").textContent = "Wish made ✨";
+  document.getElementById("cakeBtn").disabled = true;
+  document.getElementById("cakeReaction").textContent = "Perfect. Now we can continue. 💚";
+
+  setTimeout(() => goTo("scene5"), 1300);
+});
+
+// Generic next buttons.
+document.querySelectorAll(".next-btn").forEach(button => {
+  button.addEventListener("click", () => goTo(button.dataset.next));
+});
+
+// Final scene.
+const finalReveal = document.getElementById("finalReveal");
+const finalYes = document.getElementById("finalYes");
+const finalNo = document.getElementById("finalNo");
+
+function revealFinal() {
+  document.querySelector(".final-buttons").style.display = "none";
+  finalReveal.classList.remove("hidden");
+  launchConfetti();
+}
+
+finalYes.addEventListener("click", revealFinal);
+
+finalNo.addEventListener("click", () => {
+  finalNo.style.transform = "scale(.55)";
+  finalYes.style.transform = "scale(1.45)";
+  setTimeout(revealFinal, 650);
+});
+
+function launchConfetti() {
+  const pieces = ["✦", "♡", "✿", "🎉", "✨", "•"];
+  for (let i = 0; i < 45; i++) {
+    const el = document.createElement("div");
+    el.className = "confetti-piece";
+    el.textContent = pieces[Math.floor(Math.random() * pieces.length)];
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.animationDelay = Math.random() * .8 + "s";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3800);
+  }
+}
+
+</script>
+</body>
+</html>
